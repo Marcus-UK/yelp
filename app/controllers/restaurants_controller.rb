@@ -7,6 +7,10 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
   end
 
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
@@ -20,6 +24,16 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
   end
+
+  def update
+  @restaurant = Restaurant.find(params[:id])
+
+  if @restaurant.update(article_params)
+    redirect_to @restaurant
+  else
+    render 'edit'
+  end
+end
 
 
   private
